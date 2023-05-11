@@ -5,19 +5,18 @@
         if (sidebar) {
             sidebar.classList.toggle('minimized');
             sidebar.classList.toggle('maximized');
-            toggleButton.innerText = sidebar.classList.contains('minimized') ? '☰' : 'X';
+            toggleButton.innerHTML = sidebar.classList.contains('minimized') ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-compress"></i>';
         }
     }
 </script>
 <div bind:this={sidebar} class="maximized">
-<button id="toggleMenuButton" bind:this={toggleButton} on:click={toggleMenu}>X</button>
+<button id="toggleMenuButton" bind:this={toggleButton} on:click={toggleMenu}><i class="fa-solid fa-compress"></i></button>
 </div>
 <style>
     div {
         min-height: 100vh;
         background-color: #f5f5f5;
         border-right: 2px solid #cacaca;
-        padding: 8px;
     }
 
     .maximized {
@@ -32,11 +31,12 @@
     }
 
     #toggleMenuButton {
-        border-radius: 10px;
         height: 40px;
-        width: 40px;
-        font-size: 30px;
+        width: 100%;
+        font-size: 20px;
         border: 1px solid #cacaca;
+        border-left: 0;
+        border-right: 0;
     }
 </style>
 
