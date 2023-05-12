@@ -5,12 +5,16 @@
         if (sidebar) {
             sidebar.classList.toggle('minimized');
             sidebar.classList.toggle('maximized');
-            toggleButton.innerHTML = sidebar.classList.contains('minimized') ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-compress"></i>';
+            // todo dont use innerhtml lol
+            toggleButton.innerHTML = sidebar.classList.contains('minimized') ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-compress"></i> <p>Minimize Menu</p>';
         }
     }
 </script>
 <div bind:this={sidebar} class="maximized">
-<button class="menuButton" bind:this={toggleButton} on:click={toggleMenu}><i class="fa-solid fa-compress"></i></button>
+<button class="menuButton" bind:this={toggleButton} on:click={toggleMenu}>
+    <i class="fa-solid fa-compress"></i>
+    <p>Minimize Menu</p>
+</button>
 </div>
 <style>
     div {
@@ -21,6 +25,12 @@
 
     .maximized {
         width: 320px;
+    }
+
+    .maximized .menuButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     :global(.minimized) {
@@ -37,6 +47,10 @@
         border: 1px solid #cacaca;
         border-left: 0;
         border-right: 0;
+    }
+
+    :global(.maximized .menuButton *) {
+        margin: 0 8px;
     }
 
     .menuButton:hover, .menuButton:focus {
