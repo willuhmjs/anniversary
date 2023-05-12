@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Calendar</title>
+</svelte:head>
 <div>
     calendar
 </div>

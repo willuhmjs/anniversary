@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Add Anniversary</title>
+</svelte:head>
 <div>
     create event
 </div>
