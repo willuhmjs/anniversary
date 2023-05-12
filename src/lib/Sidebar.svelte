@@ -48,13 +48,18 @@
         align-items: center;
     }
 
+    .menuButton:first-child {
+        border: 0;
+        border-top: 1px solid #cacaca;
+        border-bottom: 2px solid #cacaca;
+    }
+
     .menuButton {
         height: 40px;
         width: 100%;
         font-size: 20px;
-        border: 1px solid #cacaca;
-        border-left: 0;
-        border-right: 0;
+        border: 0;
+        border-bottom: 2px solid #cacaca;
     }
 
     :global(.maximized .menuButton *) {
