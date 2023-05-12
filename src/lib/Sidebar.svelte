@@ -1,6 +1,5 @@
 <script lang="ts">
     let sidebar: HTMLDivElement;
-    let toggleButton: HTMLButtonElement;
     function toggleMenu() {
         if (sidebar) {
             sidebar.classList.toggle('minimized');
@@ -8,14 +7,26 @@
             // todo dont use innerhtml lol
         }
     }
+
+    enum Page {
+        Home,
+        Create,
+        View
+    }
+
+    export let page: Page = Page.Home;
 </script>
 <div bind:this={sidebar} class="maximized">
-<button class="menuButton" bind:this={toggleButton} on:click={toggleMenu}>
+<button class="menuButton" on:click={toggleMenu}>
     <i class="fa-solid fa-compress maximizedIcon"></i>
     <i class="fa-solid fa-bars minimizedIcon"></i>
     <p>Minimize Menu</p>
 </button>
-<button class="menuButton">
+<button class="menuButton" on:click={() => page = Page.Home}>
+    <i class="fa-solid fa-calendar"></i>
+    <p>Anniversary Calendar</p>
+</button>
+<button class="menuButton" on:click={() => page = Page.Create}>
     <i class="fa-solid fa-calendar-plus"></i>
     <p>Add Anniversary</p>
 </button>
