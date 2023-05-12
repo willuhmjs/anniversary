@@ -5,7 +5,6 @@
         if (sidebar) {
             sidebar.classList.toggle('minimized');
             sidebar.classList.toggle('maximized');
-            // todo dont use innerhtml lol
         }
     }
 
