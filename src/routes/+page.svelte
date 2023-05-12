@@ -2,14 +2,9 @@
     import Sidebar from '$lib/Sidebar.svelte';
     import Home from '$lib/Home.svelte';
     import Create from "$lib/Create.svelte";
+    import {Page} from "$lib/Page";
 
-    enum Page {
-        Home,
-        Create,
-        View
-    }
-
-    let page: Page = Page.Create;
+    let page: Page = Page.Home;
 </script>
 <main>
     <Sidebar bind:page={page}/>

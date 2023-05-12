@@ -1,4 +1,5 @@
 <script lang="ts">
+    import {Page} from "$lib/Page";
     let sidebar: HTMLDivElement;
     function toggleMenu() {
         if (sidebar) {
@@ -6,12 +7,6 @@
             sidebar.classList.toggle('maximized');
             // todo dont use innerhtml lol
         }
-    }
-
-    enum Page {
-        Home,
-        Create,
-        View
     }
 
     export let page: Page = Page.Home;
