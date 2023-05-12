@@ -10,7 +10,7 @@
     }
 </script>
 <div bind:this={sidebar} class="maximized">
-<button id="toggleMenuButton" bind:this={toggleButton} on:click={toggleMenu}><i class="fa-solid fa-compress"></i></button>
+<button class="menuButton" bind:this={toggleButton} on:click={toggleMenu}><i class="fa-solid fa-compress"></i></button>
 </div>
 <style>
     div {
@@ -30,13 +30,21 @@
         align-items: center;
     }
 
-    #toggleMenuButton {
+    .menuButton {
         height: 40px;
         width: 100%;
         font-size: 20px;
         border: 1px solid #cacaca;
         border-left: 0;
         border-right: 0;
+    }
+
+    .menuButton:hover, .menuButton:focus {
+        background-color: #e5e5e5;
+    }
+
+    .menuButton:active {
+        background-color: #d5d5d5;
     }
 </style>
 
