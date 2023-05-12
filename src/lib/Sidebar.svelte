@@ -6,18 +6,18 @@
             sidebar.classList.toggle('minimized');
             sidebar.classList.toggle('maximized');
             // todo dont use innerhtml lol
-            toggleButton.innerHTML = sidebar.classList.contains('minimized') ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-compress"></i> <p>Minimize Menu</p>';
         }
     }
 </script>
 <div bind:this={sidebar} class="maximized">
 <button class="menuButton" bind:this={toggleButton} on:click={toggleMenu}>
-    <i class="fa-solid fa-compress"></i>
+    <i class="fa-solid fa-compress maximizedIcon"></i>
+    <i class="fa-solid fa-bars minimizedIcon"></i>
     <p>Minimize Menu</p>
 </button>
 <button class="menuButton">
     <i class="fa-solid fa-calendar-plus"></i>
-    <p>Calendar</p>
+    <p>Add Anniversary</p>
 </button>
 </div>
 <style>
@@ -35,6 +35,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .minimized .menuButton p, .minimized .menuButton .maximizedIcon, .maximized .menuButton .minimizedIcon{
+        display: none;
     }
 
     :global(.minimized) {
