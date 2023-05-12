@@ -1,7 +1,7 @@
 <script lang="ts">
     import Sidebar from '$lib/Sidebar.svelte';
     import Home from '$lib/Home.svelte';
-    import Create from "$lib/Create.svelte";
+    import Add from "$lib/Add.svelte";
     import {Page} from "$lib/Page";
 
     let page: Page = Page.Home;
@@ -11,7 +11,7 @@
     {#if page === Page.Home}
         <Home/>
     {:else if page === Page.Create}
-        <Create/>
+        <Add/>
     {:else if page === Page.View}
         <h1>View</h1>
     {/if}

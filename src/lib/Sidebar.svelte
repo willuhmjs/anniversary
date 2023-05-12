@@ -61,7 +61,7 @@
     }
 
     .menuButton {
-        height: 40px;
+        min-height: 50px;
         width: 100%;
         font-size: 20px;
         border: 0;
