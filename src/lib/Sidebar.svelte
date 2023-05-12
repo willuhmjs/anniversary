@@ -15,6 +15,10 @@
     <i class="fa-solid fa-compress"></i>
     <p>Minimize Menu</p>
 </button>
+<button class="menuButton">
+    <i class="fa-solid fa-calendar-plus"></i>
+    <p>Calendar</p>
+</button>
 </div>
 <style>
     div {
