@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Calendar</title>
+    <title>Anniversary Calendar</title>
 </svelte:head>
 <div>
     calendar
