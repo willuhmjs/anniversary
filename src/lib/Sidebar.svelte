@@ -75,5 +75,9 @@
         margin: 0 8px;
     }
 
+    .menuButton:hover:not(.active), .menuButton:focus:not(.active) {
+        background-color: #e0e0e0;
+    }
+
 </style>
 
