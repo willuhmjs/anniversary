@@ -84,21 +84,24 @@
 		justify-content: center;
 		margin: 0 auto;
 		width: 100%;
-		max-width: 320px;
+		max-width: 400px;
 		padding: 16px;
 	}
 
 	input {
-		margin: 8px 0;
 		padding: 8px;
 		border: 1px solid #cacaca;
 		border-radius: 4px;
 		width: 100%;
-		max-width: 320px;
-	}
+    }
 
     .input-group {
         width: 100%;
+		margin: 8px 0;
+    }
+
+    input, .icon-box {
+        margin-top: 8px;
     }
 
 	input[type='submit'] {
@@ -111,20 +114,19 @@
 
     .icon-box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-gap: 2px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
-    max-width: 320px;
   }
 
 	.icon-box button {
-		padding: 5px 10px;
+		padding: 8px 10px;
 		border: none;
 		background-color: transparent;
-		font-size: 24px;
+		font-size: 22px;
 		cursor: pointer;
 	}
 
@@ -135,4 +137,8 @@
 	:global(.activeicon) {
 		background-color: #e6e6e6 !important;
 	}
+
+    button i {
+        pointer-events: none;
+    }
 </style>
