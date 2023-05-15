@@ -81,7 +81,8 @@
 
 <style>
 	.wrapper {
-		flex: 3;
+        flex: 1;
+        min-width: 0;
 		min-height: 100vh;
 		background-color: #fafafa;
 	}
