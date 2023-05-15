@@ -5,10 +5,12 @@
 	import { Page } from '$lib/Page';
 
 	let page: Page = Page.Calendar;
+    let state = 'maximized';
+
 </script>
 
 <main>
-	<Sidebar bind:page />
+	<Sidebar bind:page bind:state />
 	{#if page === Page.Calendar}
 		<Home />
 	{:else if page === Page.Create}

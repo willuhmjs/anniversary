@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { Page } from '$lib/Page';
 	let sidebar: HTMLDivElement;
-	function toggleMenu() {
+    export let state = '';
+    function toggleMenu() {
 		if (sidebar) {
 			sidebar.classList.toggle('minimized');
 			sidebar.classList.toggle('maximized');
-		}
+            state = sidebar.classList.contains('minimized') ? 'minimized' : 'maximized';
+        }
 	}
 
 	export let page: Page = Page.Calendar;
