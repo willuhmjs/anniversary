@@ -4,11 +4,11 @@
     import Add from "$lib/Add.svelte";
     import {Page} from "$lib/Page";
 
-    let page: Page = Page.Home;
+    let page: Page = Page.Calendar;
 </script>
 <main>
     <Sidebar bind:page={page}/>
-    {#if page === Page.Home}
+    {#if page === Page.Calendar}
         <Home/>
     {:else if page === Page.Create}
         <Add/>

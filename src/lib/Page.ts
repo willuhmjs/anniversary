@@ -1,5 +1,5 @@
 export enum Page {
-    Home,
+    Calendar,
     Create,
     View
 }

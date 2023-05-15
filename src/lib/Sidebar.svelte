@@ -8,7 +8,7 @@
         }
     }
 
-    export let page: Page = Page.Home;
+    export let page: Page = Page.Calendar;
 </script>
 <div bind:this={sidebar} class="maximized">
 <button class="menuButton" on:click={toggleMenu}>
@@ -16,11 +16,11 @@
     <i class="fa-solid fa-bars minimizedIcon"></i>
     <p>Minimize Menu</p>
 </button>
-<button class="menuButton" on:click={() => page = Page.Home}>
+<button class="menuButton {page == Page.Calendar ? "active" : ""}" on:click={() => page = Page.Calendar}>
     <i class="fa-solid fa-calendar"></i>
     <p>Anniversary Calendar</p>
 </button>
-<button class="menuButton" on:click={() => page = Page.Create}>
+<button class="menuButton {page == Page.Create ? "active" : ""}" on:click={() => page = Page.Create}>
     <i class="fa-solid fa-calendar-plus"></i>
     <p>Add Anniversary</p>
 </button>
@@ -30,6 +30,10 @@
         min-height: 100vh;
         background-color: #f5f5f5;
         border-right: 2px solid #cacaca;
+    }
+
+    :global(.active) {
+        background-color: #ccc;
     }
 
     .maximized {
@@ -71,12 +75,5 @@
         margin: 0 8px;
     }
 
-    .menuButton:hover, .menuButton:focus {
-        background-color: #e5e5e5;
-    }
-
-    .menuButton:active {
-        background-color: #d5d5d5;
-    }
 </style>
 
