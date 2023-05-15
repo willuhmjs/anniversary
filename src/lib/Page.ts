@@ -1,5 +1,5 @@
 export enum Page {
-    Calendar,
-    Create,
-    View
+	Calendar,
+	Create,
+	View
 }

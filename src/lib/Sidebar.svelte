@@ -1,84 +1,93 @@
 <script lang="ts">
-    import {Page} from "$lib/Page";
-    let sidebar: HTMLDivElement;
-    function toggleMenu() {
-        if (sidebar) {
-            sidebar.classList.toggle('minimized');
-            sidebar.classList.toggle('maximized');
-        }
-    }
+	import { Page } from '$lib/Page';
+	let sidebar: HTMLDivElement;
+	function toggleMenu() {
+		if (sidebar) {
+			sidebar.classList.toggle('minimized');
+			sidebar.classList.toggle('maximized');
+		}
+	}
 
-    export let page: Page = Page.Calendar;
+	export let page: Page = Page.Calendar;
 </script>
+
 <div bind:this={sidebar} class="maximized">
-<button class="menuButton" on:click={toggleMenu}>
-    <i class="fa-solid fa-compress maximizedIcon"></i>
-    <i class="fa-solid fa-bars minimizedIcon"></i>
-    <p>Minimize Menu</p>
-</button>
-<button class="menuButton {page == Page.Calendar ? "active" : ""}" on:click={() => page = Page.Calendar}>
-    <i class="fa-solid fa-calendar"></i>
-    <p>Anniversary Calendar</p>
-</button>
-<button class="menuButton {page == Page.Create ? "active" : ""}" on:click={() => page = Page.Create}>
-    <i class="fa-solid fa-calendar-plus"></i>
-    <p>Add Anniversary</p>
-</button>
+	<button class="menuButton" on:click={toggleMenu}>
+		<i class="fa-solid fa-compress maximizedIcon" />
+		<i class="fa-solid fa-bars minimizedIcon" />
+		<p>Minimize Menu</p>
+	</button>
+	<button
+		class="menuButton {page == Page.Calendar ? 'active' : ''}"
+		on:click={() => (page = Page.Calendar)}
+	>
+		<i class="fa-solid fa-calendar" />
+		<p>Anniversary Calendar</p>
+	</button>
+	<button
+		class="menuButton {page == Page.Create ? 'active' : ''}"
+		on:click={() => (page = Page.Create)}
+	>
+		<i class="fa-solid fa-calendar-plus" />
+		<p>Add Anniversary</p>
+	</button>
 </div>
+
 <style>
-    div {
-        min-height: 100vh;
-        background-color: #f5f5f5;
-        border-right: 2px solid #cacaca;
-    }
+	div {
+		min-height: 100vh;
+		background-color: #f5f5f5;
+		border-right: 2px solid #cacaca;
+	}
 
-    :global(.active) {
-        background-color: #ff1744;
-        color: white;
-    }
+	:global(.active) {
+		background-color: #ff1744;
+		color: white;
+	}
 
-    .maximized {
-        width: 320px;
-    }
+	.maximized {
+		width: 320px;
+	}
 
-    .maximized .menuButton {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+	.maximized .menuButton {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-    .minimized .menuButton p, .minimized .menuButton .maximizedIcon, .maximized .menuButton .minimizedIcon{
-        display: none;
-    }
+	.minimized .menuButton p,
+	.minimized .menuButton .maximizedIcon,
+	.maximized .menuButton .minimizedIcon {
+		display: none;
+	}
 
-    :global(.minimized) {
-        width: 60px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+	:global(.minimized) {
+		width: 60px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-    .menuButton:first-child {
-        border: 0;
-        border-top: 1px solid #cacaca;
-        border-bottom: 2px solid #cacaca;
-    }
+	.menuButton:first-child {
+		border: 0;
+		border-top: 1px solid #cacaca;
+		border-bottom: 2px solid #cacaca;
+	}
 
-    .menuButton {
-        min-height: 50px;
-        width: 100%;
-        font-size: 20px;
-        border: 0;
-        border-bottom: 2px solid #cacaca;
-    }
+	.menuButton {
+		min-height: 50px;
+		width: 100%;
+		font-size: 20px;
+		border: 0;
+		border-bottom: 2px solid #cacaca;
+	}
 
-    :global(.maximized .menuButton *) {
-        margin: 0 8px;
-    }
+	:global(.maximized .menuButton *) {
+		margin: 0 8px;
+	}
 
-    .menuButton:hover:not(.active), .menuButton:focus:not(.active) {
-        background-color: #e0e0e0;
-    }
-
+	.menuButton:hover:not(.active),
+	.menuButton:focus:not(.active) {
+		background-color: #e0e0e0;
+	}
 </style>
-
