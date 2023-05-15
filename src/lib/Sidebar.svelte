@@ -33,7 +33,8 @@
     }
 
     :global(.active) {
-        background-color: #ccc;
+        background-color: #ff1744;
+        color: white;
     }
 
     .maximized {
