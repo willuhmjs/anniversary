@@ -49,7 +49,7 @@
 				<button type="button" value="fa-heart"><i class="fa-solid fa-heart" /></button>
 				<button type="button" value="fa-cake-candles"><i class="fa-solid fa-cake-candles" /></button
 				>
-				<button type="button" value="fa-baby"><i class="fa-solid fa-baby" /></button>
+				<button type="button" value="fa-baby-carriage"><i class="fa-solid fa-baby-carriage"></i></button>
 				<button type="button" value="fa-champagne-glasses"
 					><i class="fa-solid fa-champagne-glasses" /></button
 				>
