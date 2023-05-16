@@ -6,18 +6,23 @@
 
 	let page: Page = Page.Calendar;
     let state = 'maximized';
+	let innerWidth = 0;
 
 </script>
+<svelte:window bind:innerWidth></svelte:window>
 
 <main>
 	<Sidebar bind:page bind:state />
-	{#if page === Page.Calendar}
-		<Home />
-	{:else if page === Page.Create}
-		<Add />
-	{:else if page === Page.View}
-		<h1>View</h1>
+	{#if state === 'minimized' || (state === 'maximized' && innerWidth > 500)}
+		{#if page === Page.Calendar}
+			<Home />
+		{:else if page === Page.Create}
+			<Add />
+		{:else if page === Page.View}
+			<h1>View</h1>
+		{/if}
 	{/if}
+
 </main>
 
 <style>
