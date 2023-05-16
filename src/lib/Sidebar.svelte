@@ -34,7 +34,7 @@
 		<p>Add Anniversary</p>
 	</button>
 	{#each $events as event}
-		<button class="menuButton {page === event.id ? 'active' : ''}" on:click={() => page = event.id}>{event.title}</button>
+		<button class="menuButton {page === event.id ? 'active' : ''}" on:click={() => page = event.id}><i class="fa-solid {event.icon}"></i><p>{event.title}</p></button>
 	{/each}
 </div>
 
