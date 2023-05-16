@@ -91,5 +91,6 @@
 	.menuButton:hover:not(.active),
 	.menuButton:focus:not(.active) {
 		background-color: #e0e0e0;
+		cursor: pointer;
 	}
 </style>
