@@ -13,7 +13,7 @@
 
 <main>
 	<Sidebar bind:page bind:state />
-	{#if state === 'minimized' || (state === 'maximized' && innerWidth > 500)}
+	{#if state === 'minimized' || (state === 'maximized' && innerWidth >= 500)}
 		{#if page === Page.Calendar}
 			<Home />
 		{:else if page === Page.Create}
