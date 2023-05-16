@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-
+	import events from '$lib/Events';
 	let selectedicon = '';
+	let title: string, date: Date;
 	let activeButton;
 
 	function handleiconClick(event) {
@@ -27,6 +28,17 @@
 			button.addEventListener('click', handleiconClick);
 		});
 	});
+
+	let submitForm = (event: Event) => {
+		$events = [...$events, {
+			id: $events.length + 1,
+			title,
+			date,
+			icon: selectedicon
+		}];
+		if (event.target instanceof HTMLFormElement)
+			event.target.reset()
+	};
 </script>
 
 <svelte:head>
@@ -34,17 +46,17 @@
 </svelte:head>
 
 <div class="wrapper">
-	<form>
+	<form on:submit|preventDefault={submitForm}>
 		<div class="input-group">
 			<label for="name">Event Name</label>
-			<input type="text" id="name" placeholder="Wedding Day" required />
+			<input type="text" bind:value={title} placeholder="Wedding Day" required />
 		</div>
 		<div class="input-group">
 			<label for="date">Event Date</label>
-			<input type="date" id="date" required />
+			<input type="date" bind:value={date} id="date" required />
 		</div>
 		<div class="input-group">
-			<label for="icon">Event icon</label>
+			<label for="icon">Event Icon</label>
 			<div class="icon-box">
 				<button type="button" value="fa-heart"><i class="fa-solid fa-heart" /></button>
 				<button type="button" value="fa-cake-candles"><i class="fa-solid fa-cake-candles" /></button

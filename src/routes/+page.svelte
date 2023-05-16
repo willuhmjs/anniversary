@@ -2,9 +2,9 @@
 	import Sidebar from '$lib/Sidebar.svelte';
 	import Home from '$lib/Home.svelte';
 	import Add from '$lib/Add.svelte';
-	import { Page } from '$lib/Page';
+	import type { Page } from '$lib/Page';
 
-	let page: Page = Page.Calendar;
+	let page: Page = "calendar";
     let state = 'maximized';
 	let innerWidth = 0;
 
@@ -14,11 +14,11 @@
 <main>
 	<Sidebar bind:page bind:state />
 	{#if state === 'minimized' || (state === 'maximized' && innerWidth >= 500)}
-		{#if page === Page.Calendar}
+		{#if page === "calendar"}
 			<Home />
-		{:else if page === Page.Create}
+		{:else if page === "create"}
 			<Add />
-		{:else if page === Page.View}
+		{:else if page === "view"}
 			<h1>View</h1>
 		{/if}
 	{/if}

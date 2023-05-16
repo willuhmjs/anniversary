@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Page } from '$lib/Page';
+	import type { Page } from '$lib/Page';
+	import events from '$lib/Events';
 	let sidebar: HTMLDivElement;
     export let state = '';
     function toggleMenu() {
@@ -9,8 +10,7 @@
             state = sidebar.classList.contains('minimized') ? 'minimized' : 'maximized';
         }
 	}
-
-	export let page: Page = Page.Calendar;
+	export let page: Page = "calendar";
 </script>
 
 <div bind:this={sidebar} class="maximized">
@@ -20,19 +20,22 @@
 		<p>Minimize Menu</p>
 	</button>
 	<button
-		class="menuButton {page == Page.Calendar ? 'active' : ''}"
-		on:click={() => (page = Page.Calendar)}
+		class="menuButton {page == "calendar" ? 'active' : ''}"
+		on:click={() => (page = "calendar")}
 	>
 		<i class="fa-solid fa-calendar" />
 		<p>Anniversary Calendar</p>
 	</button>
 	<button
-		class="menuButton {page == Page.Create ? 'active' : ''}"
-		on:click={() => (page = Page.Create)}
+		class="menuButton {page == "create" ? 'active' : ''}"
+		on:click={() => (page = "create")}
 	>
 		<i class="fa-solid fa-calendar-plus" />
 		<p>Add Anniversary</p>
 	</button>
+	{#each $events as event}
+		<button class="menuButton {page === event.id ? 'active' : ''}" on:click={() => page = event.id}>{event.title}</button>
+	{/each}
 </div>
 
 <style>
