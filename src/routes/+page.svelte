@@ -16,8 +16,8 @@
 	{#if state === 'minimized' || (state === 'maximized' && innerWidth >= 500)}
 		{#if page === "calendar"}
 			<Calendar />
-		{:else if page === "create"}
-			<Add />
+		{:else if page === "add"}
+			<Add bind:page />
 		{:else if page === "view"}
 			<h1>View</h1>
 		{/if}

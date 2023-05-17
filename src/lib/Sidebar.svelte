@@ -10,7 +10,7 @@
             state = sidebar.classList.contains('minimized') ? 'minimized' : 'maximized';
         }
 	}
-	export let page: Page = "calendar";
+	export let page: Page;
 </script>
 
 <div bind:this={sidebar} class="maximized">
@@ -27,8 +27,8 @@
 		<p>Anniversary Calendar</p>
 	</button>
 	<button
-		class="menuButton {page == "create" ? 'active' : ''}"
-		on:click={() => (page = "create")}
+		class="menuButton {page == "add" ? 'active' : ''}"
+		on:click={() => (page = "add")}
 	>
 		<i class="fa-solid fa-calendar-plus" />
 		<p>Add Anniversary</p>

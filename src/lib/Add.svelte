@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import events from '$lib/Events';
+	import type { Page } from '$lib/Page';
 	let selectedicon = '';
 	let title: string, date: Date;
+    export let page: Page;
 	let activeButton;
 
 	function handleiconClick(event) {
@@ -36,6 +38,7 @@
 			date,
 			icon: selectedicon
 		}];
+        page = $events.length;
 		if (event.target instanceof HTMLFormElement)
 			event.target.reset()
 	};
