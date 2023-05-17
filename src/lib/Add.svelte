@@ -19,6 +19,12 @@
 		activeButton = button;
 	}
 
+    function getMaxDate() {
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() - 1);
+        return currentDate.toISOString().substring(0, 10);
+    }
+
 	onMount(() => {
 		const buttons = document.querySelectorAll('.icon-box button');
 		buttons.forEach((button, index) => {
@@ -56,7 +62,7 @@
 		</div>
 		<div class="input-group">
 			<label for="date">Anniversary Date</label>
-			<input type="date" bind:value={date} id="date" required />
+			<input type="date" bind:value={date} id="date" max={getMaxDate()} required />
 		</div>
 		<!--
 		<div class="input-group">
