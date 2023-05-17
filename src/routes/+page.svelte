@@ -3,6 +3,7 @@
 	import Calendar from '$lib/Calendar.svelte';
 	import Add from '$lib/Add.svelte';
 	import type { Page } from '$lib/Page';
+	import View from '$lib/View.svelte';
 
 	let page: Page = "calendar";
     let state = 'maximized';
@@ -18,8 +19,8 @@
 			<Calendar />
 		{:else if page === "add"}
 			<Add bind:page />
-		{:else if page === "view"}
-			<h1>View</h1>
+		{:else if typeof page === "number"}
+			<View {page} />
 		{/if}
 	{/if}
 
