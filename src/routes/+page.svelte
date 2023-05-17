@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Sidebar from '$lib/Sidebar.svelte';
-	import Home from '$lib/Home.svelte';
+	import Calendar from '$lib/Calendar.svelte';
 	import Add from '$lib/Add.svelte';
 	import type { Page } from '$lib/Page';
 
@@ -15,7 +15,7 @@
 	<Sidebar bind:page bind:state />
 	{#if state === 'minimized' || (state === 'maximized' && innerWidth >= 500)}
 		{#if page === "calendar"}
-			<Home />
+			<Calendar />
 		{:else if page === "create"}
 			<Add />
 		{:else if page === "view"}
