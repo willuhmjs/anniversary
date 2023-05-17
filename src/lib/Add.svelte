@@ -48,15 +48,21 @@
 <div class="wrapper">
 	<form on:submit|preventDefault={submitForm}>
 		<div class="input-group">
-			<label for="name">Event Name</label>
+			<label for="name">Anniversary Name</label>
 			<input type="text" bind:value={title} placeholder="Wedding Day" required />
 		</div>
 		<div class="input-group">
-			<label for="date">Event Date</label>
+			<label for="date">Anniversary Date</label>
 			<input type="date" bind:value={date} id="date" required />
 		</div>
+		<!--
 		<div class="input-group">
-			<label for="icon">Event Icon</label>
+			<label for="description">Anniversary Description</label>
+			<input type="text" id="description" placeholder={`You will be married for {timeTotal} in {timeTill}`}/>
+		</div>
+		-->
+		<div class="input-group">
+			<label for="icon">Anniversary Icon</label>
 			<div class="icon-box">
 				<button type="button" value="fa-heart"><i class="fa-solid fa-heart" /></button>
 				<button type="button" value="fa-cake-candles"><i class="fa-solid fa-cake-candles" /></button
