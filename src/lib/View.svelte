@@ -35,61 +35,64 @@
     }
 
     function calculateDuration(startDate: Date, endDate: Date): string {
-        const currentDate = new Date(); // Get the current date
-        if (endDate.getTime() > currentDate.getTime()) {
-            // Calculate the remaining time until the end date
-            const remainingTime = endDate.getTime() - currentDate.getTime();
+  const currentDate = new Date();
 
-            const remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
-            const remainingYears = Math.floor(remainingDays / 365);
-            const remainingMonths = Math.floor((remainingDays % 365) / 30);
-            const remainingDaysOfMonth = Math.floor((remainingDays % 365) % 30);
+  if (endDate.getTime() > currentDate.getTime()) {
+    const remainingTime = endDate.getTime() - currentDate.getTime();
+    const remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
 
-            let duration = '';
-
-            if (remainingYears > 0) {
-                duration += `${remainingYears} ${remainingYears === 1 ? 'year' : 'years'}`;
-            }
-
-            if (remainingMonths > 0) {
-                duration += `${duration ? ', ' : ''}${remainingMonths} ${
-                    remainingMonths === 1 ? 'month' : 'months'
-                }`;
-            }
-
-            if (remainingDaysOfMonth > 0) {
-                duration += `${duration ? ', ' : ''}${remainingDaysOfMonth} ${
-                    remainingDaysOfMonth === 1 ? 'day' : 'days'
-                }`;
-            }
-            if (duration === "0 days") return "It's today!";
-            return duration;
-        } else {
-            // Calculate the duration between the start date and end date
-            const daysSince = Math.floor((startDate.getTime() - endDate.getTime()) / (24 * 60 * 60 * 1000));
-            const years = Math.floor(daysSince / 365);
-            const months = Math.floor((daysSince % 365) / 30);
-            const days = Math.floor((daysSince % 365) % 30);
-
-            let duration = '';
-
-            if (years > 0) {
-                duration += `${years} ${years === 1 ? 'year' : 'years'}`;
-            }
-
-            if (months > 0) {
-                duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
-            }
-
-            if (days >= 0) {
-                duration += `${duration ? ', ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
-            }
-            console.log(duration);
-            if (duration === "0 days") return "It's today!";
-
-            return duration;
-        }
+    if (remainingDays === 0) {
+      return "It's today!";
     }
+
+    const remainingYears = Math.floor(remainingDays / 365);
+    const remainingMonths = Math.floor((remainingDays % 365) / 30);
+    const remainingDaysOfMonth = remainingDays % 30;
+
+    let duration = '';
+
+    if (remainingYears > 0) {
+      duration += `${remainingYears} ${remainingYears === 1 ? 'year' : 'years'}`;
+    }
+
+    if (remainingMonths > 0) {
+      duration += `${duration ? ', ' : ''}${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+    }
+
+    if (remainingDaysOfMonth > 0) {
+      duration += `${duration ? ', ' : ''}${remainingDaysOfMonth} ${remainingDaysOfMonth === 1 ? 'day' : 'days'}`;
+    }
+
+    return duration;
+  } else {
+    const daysSince = Math.floor((currentDate.getTime() - endDate.getTime()) / (24 * 60 * 60 * 1000));
+
+    if (daysSince === 0) {
+      return "It's today!";
+    }
+
+    const years = Math.floor(daysSince / 365);
+    const months = Math.floor((daysSince % 365) / 30);
+    const days = (daysSince % 365) % 30;
+
+    let duration = '';
+
+    if (years > 0) {
+      duration += `${years} ${years === 1 ? 'year' : 'years'}`;
+    }
+
+    if (months > 0) {
+      duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
+    }
+
+    if (days >= 0) {
+      duration += `${duration ? ', ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
+    }
+
+    return duration;
+  }
+}
+
 
     export let page: Page;
     // This page won't be rendered unless page is a number
