@@ -10,7 +10,6 @@
 	  nextOccurrence: Date;
 	  duration: string;
 	  timeUntilNext: string;
-	  oneYearPassed: boolean;
 	  anniversaryNumber: string;
 	} {
 	  const today = startDate;
@@ -39,7 +38,7 @@
 	  // Calculate the anniversary number
 	  const anniversaryNumber = calculateAnniversaryNumber(startDate, endDate, oneYearPassed);
   
-	  return { nextOccurrence, duration, timeUntilNext, oneYearPassed, anniversaryNumber };
+	  return { nextOccurrence, duration, timeUntilNext, anniversaryNumber };
 	}
   
 	function calculateDuration(startDate: Date, endDate: Date): string {
@@ -112,10 +111,10 @@
 	  
 	  if (oneYearPassed) {
 		const yearsPassed = (today.getFullYear() - endDate.getFullYear()) + 1;
-		return `${yearsPassed} ${yearsPassed === 1 ? 'year' : 'years'}`;
+		return `${yearsPassed} year`;
 	  } else {
 		const monthsPassed = (today.getFullYear() - endDate.getFullYear()) * 12 + (today.getMonth() - endDate.getMonth()) + 1;
-		return `${monthsPassed} ${monthsPassed === 1 ? 'month' : 'months'}`;
+		return `${monthsPassed} month`;
 	  }
 	}
   
@@ -132,20 +131,13 @@
   
   <div class="wrapper">
 	<div class="center">
-	  Start Date: {calculateAnniversary(new Date(), new Date(associated.date)).duration}
-	  <br />
-	  Next Occurrence: {calculateAnniversary(
+	  <h1>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of {associated.title} is in:</h1>
+	  <h2>{calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}</h2>
+	  <p>on {calculateAnniversary(
 		new Date(),
 		new Date(associated.date)
-	  ).nextOccurrence.toDateString()}
-	  <br />
-	  Time Until Next: {calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}
-	  <br />
-	  Anniversary Type: {calculateAnniversary(new Date(), new Date(associated.date)).oneYearPassed
-		? 'Yearly'
-		: 'Monthly'}
-	  <br />
-	  Anniversary Number: {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber}
+	  ).nextOccurrence.toDateString()}</p>
+	  <p>This event was {calculateAnniversary(new Date(), new Date(associated.date)).duration}</p>
 	</div>
   </div>
   
