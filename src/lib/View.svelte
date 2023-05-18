@@ -69,7 +69,7 @@
 		}
   
 		if (remainingDaysOfMonth > 0) {
-		  duration += `${duration ? ', ' : ''}${remainingDaysOfMonth} ${
+		  duration += `${duration ? ' and ' : ''}${remainingDaysOfMonth} ${
 			remainingDaysOfMonth === 1 ? 'day' : 'days'
 		  }`;
 		}
@@ -97,9 +97,10 @@
 		if (months > 0) {
 		  duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
 		}
-  
-		if (days > 0) {
-		  duration += `${duration ? ', ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
+		if (days > 0 && years == 0) {
+		  duration += `${duration ? ' and ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
+		} else if (days > 0) {
+			duration += `, and ${days} ${days === 1 ? 'day' : 'days'}`;
 		}
   
 		return duration;
@@ -151,7 +152,7 @@
 	}
   
 	.center {
-	  max-width: 600px;
+	  max-width: 100%;
 	  margin: 0 auto;
 	  padding: 0 1rem;
 	  text-align: center;
