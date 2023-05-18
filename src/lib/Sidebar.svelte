@@ -93,6 +93,8 @@
 		font-size: 20px;
 		border: 0;
 		border-bottom: 2px solid #cacaca;
+		color: black;
+
 	}
 
 	:global(.maximized .menuButton *) {
