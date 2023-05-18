@@ -97,10 +97,8 @@
 		if (months > 0) {
 		  duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
 		}
-		if (days > 0 && years == 0) {
-		  duration += `${duration ? ' and ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
-		} else if (days > 0) {
-			duration += `, and ${days} ${days === 1 ? 'day' : 'days'}`;
+		if (days > 0) {
+			duration += `, ${days} ${days === 1 ? 'day' : 'days'}`;
 		}
   
 		return duration;
@@ -132,11 +130,13 @@
   
   <div class="wrapper">
 	<div class="center">
-	  <h2>{calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}</h2>
-	  <p>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of <b>{associated.title}</b> is on {calculateAnniversary(
+	  <h1>{calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}</h1>
+	  <p>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of <b>{associated.title}</b> is on:
+	  <br>
+	  <i>{calculateAnniversary(
 		new Date(),
 		new Date(associated.date)
-	  ).nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</p>
+	  ).nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</i></p>
 	  <p>This event was {calculateAnniversary(new Date(), new Date(associated.date)).duration} ago.</p>
 	</div>
   </div>
@@ -152,10 +152,21 @@
 	}
   
 	.center {
-	  max-width: 100%;
+	  max-width: 50vw;
 	  margin: 0 auto;
 	  padding: 0 1rem;
-	  text-align: center;
+	}
+
+	.center h1 {
+	  font-size: 3rem;
+	  line-height: 1.5;
+	  color: #333;
+	}
+
+	.center p {
+	  font-size: 1.5rem;
+	  line-height: 1.5;
+	  color: #333;
 	}
 
 	.center p {
