@@ -53,7 +53,7 @@
 	}
 
 	.maximized {
-		width: 320px;
+		width: 20rem;
 	}
 
 	.maximized .menuButton {
