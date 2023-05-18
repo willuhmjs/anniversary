@@ -90,7 +90,7 @@
 				duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
 			}
 
-			if (days >= 0) {
+			if (days > 0) {
 				duration += `${duration ? ', ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
 			}
 
