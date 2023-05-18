@@ -122,6 +122,7 @@
 	// So this error can be safely ignored
 	// @ts-ignore
 	$: associated = $events[page - 1];
+	$: calculated = calculateAnniversary(new Date(), new Date(associated.date));
   </script>
   
   <svelte:head>
@@ -130,14 +131,11 @@
   
   <div class="wrapper">
 	<div class="center">
-	  <h1>{calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}</h1>
-	  <p>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of <b>{associated.title}</b> is on:
+	  <h1>{calculated.timeUntilNext}</h1>
+	  <p>The {calculated.anniversaryNumber} anniversary of <b>{associated.title}</b> is on:
 	  <br>
-	  <i>{calculateAnniversary(
-		new Date(),
-		new Date(associated.date)
-	  ).nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</i></p>
-	  <p>This event was {calculateAnniversary(new Date(), new Date(associated.date)).duration} ago.</p>
+	  <i>{calculated.nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</i></p>
+	  <p>This event was {calculated.duration} ago.</p>
 	</div>
   </div>
   
