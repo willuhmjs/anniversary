@@ -4,7 +4,7 @@
 	import type { Page } from '$lib/Page';
 	let selectedicon = '';
 	let title: string, date: Date;
-    export let page: Page;
+	export let page: Page;
 	let activeButton;
 
 	function handleiconClick(event) {
@@ -19,11 +19,11 @@
 		activeButton = button;
 	}
 
-    function getMaxDate() {
-        const currentDate = new Date();
-        currentDate.setDate(currentDate.getDate());
-        return currentDate.toISOString().substring(0, 10);
-    }
+	function getMaxDate() {
+		const currentDate = new Date();
+		currentDate.setDate(currentDate.getDate());
+		return currentDate.toISOString().substring(0, 10);
+	}
 
 	onMount(() => {
 		const buttons = document.querySelectorAll('.icon-box button');
@@ -38,15 +38,17 @@
 	});
 
 	let submitForm = (event: Event) => {
-		$events = [...$events, {
-			id: $events.length + 1,
-			title,
-			date,
-			icon: selectedicon
-		}];
-        page = $events.length;
-		if (event.target instanceof HTMLFormElement)
-			event.target.reset()
+		$events = [
+			...$events,
+			{
+				id: $events.length + 1,
+				title,
+				date,
+				icon: selectedicon
+			}
+		];
+		page = $events.length;
+		if (event.target instanceof HTMLFormElement) event.target.reset();
 	};
 </script>
 
@@ -76,7 +78,9 @@
 				<button type="button" value="fa-heart"><i class="fa-solid fa-heart" /></button>
 				<button type="button" value="fa-cake-candles"><i class="fa-solid fa-cake-candles" /></button
 				>
-				<button type="button" value="fa-baby-carriage"><i class="fa-solid fa-baby-carriage"></i></button>
+				<button type="button" value="fa-baby-carriage"
+					><i class="fa-solid fa-baby-carriage" /></button
+				>
 				<button type="button" value="fa-champagne-glasses"
 					><i class="fa-solid fa-champagne-glasses" /></button
 				>
@@ -108,8 +112,8 @@
 
 <style>
 	.wrapper {
-        flex: 1;
-        min-width: 0;
+		flex: 1;
+		min-width: 0;
 		min-height: 100vh;
 		background-color: #fafafa;
 	}

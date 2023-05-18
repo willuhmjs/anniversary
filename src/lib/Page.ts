@@ -1,1 +1,1 @@
-export type Page = "calendar" | "add" | "view" | number;
+export type Page = 'calendar' | 'add' | 'view' | number;

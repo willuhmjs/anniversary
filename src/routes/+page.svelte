@@ -5,25 +5,24 @@
 	import type { Page } from '$lib/Page';
 	import View from '$lib/View.svelte';
 
-	let page: Page = "calendar";
-    let state = 'maximized';
+	let page: Page = 'calendar';
+	let state = 'maximized';
 	let innerWidth = 0;
-
 </script>
-<svelte:window bind:innerWidth></svelte:window>
+
+<svelte:window bind:innerWidth />
 
 <main>
 	<Sidebar bind:page bind:state />
 	{#if state === 'minimized' || (state === 'maximized' && innerWidth >= 500)}
-		{#if page === "calendar"}
+		{#if page === 'calendar'}
 			<Calendar />
-		{:else if page === "add"}
+		{:else if page === 'add'}
 			<Add bind:page />
-		{:else if typeof page === "number"}
+		{:else if typeof page === 'number'}
 			<View {page} />
 		{/if}
 	{/if}
-
 </main>
 
 <style>

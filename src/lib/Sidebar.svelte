@@ -2,13 +2,13 @@
 	import type { Page } from '$lib/Page';
 	import events from '$lib/Events';
 	let sidebar: HTMLDivElement;
-    export let state = '';
-    function toggleMenu() {
+	export let state = '';
+	function toggleMenu() {
 		if (sidebar) {
 			sidebar.classList.toggle('minimized');
 			sidebar.classList.toggle('maximized');
-            state = sidebar.classList.contains('minimized') ? 'minimized' : 'maximized';
-        }
+			state = sidebar.classList.contains('minimized') ? 'minimized' : 'maximized';
+		}
 	}
 	export let page: Page;
 </script>
@@ -20,21 +20,23 @@
 		<p>Minimize Menu</p>
 	</button>
 	<button
-		class="menuButton {page == "calendar" ? 'active' : ''}"
-		on:click={() => (page = "calendar")}
+		class="menuButton {page == 'calendar' ? 'active' : ''}"
+		on:click={() => (page = 'calendar')}
 	>
 		<i class="fa-solid fa-calendar" />
 		<p>Anniversary Calendar</p>
 	</button>
-	<button
-		class="menuButton {page == "add" ? 'active' : ''}"
-		on:click={() => (page = "add")}
-	>
+	<button class="menuButton {page == 'add' ? 'active' : ''}" on:click={() => (page = 'add')}>
 		<i class="fa-solid fa-calendar-plus" />
 		<p>Add Anniversary</p>
 	</button>
 	{#each $events as event}
-		<button class="menuButton {page === event.id ? 'active' : ''}" on:click={() => page = event.id}><i class="fa-solid {event.icon}"></i><p>{event.title}</p></button>
+		<button
+			class="menuButton {page === event.id ? 'active' : ''}"
+			on:click={() => (page = event.id)}
+			><i class="fa-solid {event.icon}" />
+			<p>{event.title}</p></button
+		>
 	{/each}
 </div>
 
