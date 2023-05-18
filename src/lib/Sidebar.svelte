@@ -49,7 +49,7 @@
 
 	:global(.active) {
 		background-color: #ff1744;
-		color: white;
+		color: white!important;
 	}
 
 	.maximized {
