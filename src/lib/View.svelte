@@ -7,7 +7,7 @@
     import events from "$lib/Events";
 
     // External functions
-    function calculateAnniversary(startDate: Date, endDate: Date): { nextOccurrence: Date, duration: string, timeUntilNext: string } {
+    function calculateAnniversary(startDate: Date, endDate: Date): { nextOccurrence: Date, duration: string, timeUntilNext: string, oneYearPassed: boolean } {
         const today = startDate;
         const nextOccurrence = new Date(endDate);
         nextOccurrence.setDate(nextOccurrence.getDate() + 1);
@@ -31,7 +31,7 @@
         // Calculate the time until the next occurrence
         const timeUntilNext = calculateDuration(today, nextOccurrence);
 
-        return { nextOccurrence, duration, timeUntilNext };
+        return { nextOccurrence, duration, timeUntilNext, oneYearPassed };
     }
 
     function calculateDuration(startDate: Date, endDate: Date): string {
@@ -102,11 +102,13 @@
 </script>
 
 <div class="wrapper">
-    {calculateAnniversary(new Date(), new Date(associated.date)).duration}
+    Start Date: {calculateAnniversary(new Date(), new Date(associated.date)).duration}
     <br />
     Next Occurrence: {calculateAnniversary(new Date(), new Date(associated.date)).nextOccurrence.toDateString()}
     <br />
     Time Until Next: {calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}
+    <br />
+    Anniversary Type: {calculateAnniversary(new Date(), new Date(associated.date)).oneYearPassed ? 'Yearly' : 'Monthly'}
 </div>
 
 <style>
