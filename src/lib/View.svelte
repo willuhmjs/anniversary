@@ -42,7 +42,7 @@
 	}
   
 	function calculateDuration(startDate: Date, endDate: Date): string {
-	  const currentDate = new Date();
+	  const currentDate = startDate;
   
 	  if (endDate.getTime() > currentDate.getTime()) {
 		const remainingTime = endDate.getTime() - currentDate.getTime();
@@ -107,7 +107,7 @@
 	}
   
 	function calculateAnniversaryNumber(startDate: Date, endDate: Date, oneYearPassed: boolean): string {
-	  const today = new Date();
+	  const today = startDate;
 	  
 	  if (oneYearPassed) {
 		const yearsPassed = (today.getFullYear() - endDate.getFullYear()) + 1;
@@ -131,13 +131,12 @@
   
   <div class="wrapper">
 	<div class="center">
-	  <h1>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of {associated.title} is in:</h1>
 	  <h2>{calculateAnniversary(new Date(), new Date(associated.date)).timeUntilNext}</h2>
-	  <p>on {calculateAnniversary(
+	  <p>The {calculateAnniversary(new Date(), new Date(associated.date)).anniversaryNumber} anniversary of <b>{associated.title}</b> is on {calculateAnniversary(
 		new Date(),
 		new Date(associated.date)
-	  ).nextOccurrence.toDateString()}</p>
-	  <p>This event was {calculateAnniversary(new Date(), new Date(associated.date)).duration}</p>
+	  ).nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</p>
+	  <p>This event was {calculateAnniversary(new Date(), new Date(associated.date)).duration} ago.</p>
 	</div>
   </div>
   
@@ -148,11 +147,18 @@
 	  flex: 1;
 	  display: flex;
 	  align-items: center;
-	  justify-content: center;
+	  
 	}
   
 	.center {
-	  margin: auto;
+	  max-width: 600px;
+	  margin: 0 auto;
+	  padding: 0 1rem;
+	  text-align: center;
+	}
+
+	.center p {
+		word-wrap: break-word;
 	}
   </style>
   

@@ -62,6 +62,12 @@
 		justify-content: space-between;
 	}
 
+	.menuButton p {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	.minimized .menuButton p,
 	.minimized .menuButton .maximizedIcon,
 	.maximized .menuButton .minimizedIcon {
