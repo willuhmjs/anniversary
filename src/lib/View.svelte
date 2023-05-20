@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Page } from '$lib/Page';
 	import events from '$lib/Events';
+	import moment from 'moment';
   
 	// External functions
 	function calculateAnniversary(
@@ -12,20 +13,20 @@
 	  timeUntilNext: string;
 	  anniversaryNumber: string;
 	} {
-	  const today = startDate;
-	  const nextOccurrence = new Date(endDate);
-	  nextOccurrence.setDate(nextOccurrence.getDate() + 1);
+	  const today = moment(startDate);
+	  const nextOccurrence = moment(endDate).add(1, 'day');
+  
 	  // Check if one full year has passed
-	  const oneYearPassed = today.getTime() - endDate.getTime() >= 31536000000; // 1 year = 365 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+	  const oneYearPassed = today.diff(endDate, 'years') >= 1;
   
 	  // Calculate the next occurrence of the anniversary
 	  if (!oneYearPassed) {
-		while (nextOccurrence < today) {
-		  nextOccurrence.setMonth(nextOccurrence.getMonth() + 1);
+		while (nextOccurrence.isBefore(today)) {
+		  nextOccurrence.add(1, 'month');
 		}
 	  } else {
-		while (nextOccurrence < today) {
-		  nextOccurrence.setFullYear(nextOccurrence.getFullYear() + 1);
+		while (nextOccurrence.isBefore(today)) {
+		  nextOccurrence.add(1, 'year');
 		}
 	  }
   
@@ -33,60 +34,28 @@
 	  const duration = calculateDuration(startDate, endDate);
   
 	  // Calculate the time until the next occurrence
-	  const timeUntilNext = calculateDuration(today, nextOccurrence);
+	  const timeUntilNext = calculateDuration(today.toDate(), nextOccurrence.toDate());
   
 	  // Calculate the anniversary number
 	  const anniversaryNumber = calculateAnniversaryNumber(startDate, endDate, oneYearPassed);
   
-	  return { nextOccurrence, duration, timeUntilNext, anniversaryNumber };
+	  return { nextOccurrence: nextOccurrence.toDate(), duration, timeUntilNext, anniversaryNumber };
 	}
   
 	function calculateDuration(startDate: Date, endDate: Date): string {
-	  const currentDate = startDate;
-  
-	  if (endDate.getTime() > currentDate.getTime()) {
-		const remainingTime = endDate.getTime() - currentDate.getTime();
-		const remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
-  
-		if (remainingDays === 0) {
-		  return "It's today!";
+	  const currentDate = moment(startDate);
+	  const remainingDuration = moment.duration(currentDate.diff(endDate));
+	  console.log(remainingDuration.asDays());
+		let years = remainingDuration.years();
+		let months = remainingDuration.months();
+		let days = remainingDuration.days();
+
+		if (remainingDuration.asDays() <= -1) {
+			years *= -1;
+			months *= -1;
+			days *= -1;
+
 		}
-  
-		const remainingYears = Math.floor(remainingDays / 365);
-		const remainingMonths = Math.floor((remainingDays % 365) / 30);
-		const remainingDaysOfMonth = remainingDays % 30;
-  
-		let duration = '';
-  
-		if (remainingYears > 0) {
-		  duration += `${remainingYears} ${remainingYears === 1 ? 'year' : 'years'}`;
-		}
-  
-		if (remainingMonths > 0) {
-		  duration += `${duration ? ', ' : ''}${remainingMonths} ${
-			remainingMonths === 1 ? 'month' : 'months'
-		  }`;
-		}
-  
-		if (remainingDaysOfMonth > 0) {
-		  duration += `${duration ? ' and ' : ''}${remainingDaysOfMonth} ${
-			remainingDaysOfMonth === 1 ? 'day' : 'days'
-		  }`;
-		}
-  
-		return duration;
-	  } else {
-		const daysSince = Math.floor(
-		  (currentDate.getTime() - endDate.getTime()) / (24 * 60 * 60 * 1000)
-		);
-  
-		if (daysSince === 0) {
-		  return "It's today!";
-		}
-  
-		const years = Math.floor(daysSince / 365);
-		const months = Math.floor((daysSince % 365) / 30);
-		const days = (daysSince % 365) % 30;
   
 		let duration = '';
   
@@ -97,22 +66,23 @@
 		if (months > 0) {
 		  duration += `${duration ? ', ' : ''}${months} ${months === 1 ? 'month' : 'months'}`;
 		}
+  
 		if (days > 0) {
-			duration += `, ${days} ${days === 1 ? 'day' : 'days'}`;
+		  duration += `${duration ? ' and ' : ''}${days} ${days === 1 ? 'day' : 'days'}`;
 		}
   
 		return duration;
-	  }
+
 	}
   
 	function calculateAnniversaryNumber(startDate: Date, endDate: Date, oneYearPassed: boolean): string {
-	  const today = startDate;
-	  
+	  const today = moment(startDate);
+  
 	  if (oneYearPassed) {
-		const yearsPassed = (today.getFullYear() - endDate.getFullYear()) + 1;
+		const yearsPassed = today.diff(endDate, 'years') + 1;
 		return `${yearsPassed} year`;
 	  } else {
-		const monthsPassed = (today.getFullYear() - endDate.getFullYear()) * 12 + (today.getMonth() - endDate.getMonth()) + 1;
+		const monthsPassed = today.diff(endDate, 'months') + 1;
 		return `${monthsPassed} month`;
 	  }
 	}
@@ -123,7 +93,7 @@
 	// @ts-ignore
 	$: associated = $events[page - 1];
 	$: calculated = calculateAnniversary(new Date(), new Date(associated.date));
-  </script>
+  </script>  
   
   <svelte:head>
 	<title>{associated.title}</title>
@@ -131,11 +101,11 @@
   
   <div class="wrapper">
 	<div class="center">
-	  <h1>{calculated.timeUntilNext}</h1>
+	  <h1>{calculated.timeUntilNext ? calculated.timeUntilNext : "It's today!"}</h1>
 	  <p>The {calculated.anniversaryNumber} anniversary of <b>{associated.title}</b> is on:
 	  <br>
 	  <i>{calculated.nextOccurrence.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}.</i></p>
-	  <p>This event was {calculated.duration} ago.</p>
+	  <p>This event was {calculated.duration ? `${calculated.duration} ago.`: "today!"}</p>
 	</div>
   </div>
   
