@@ -1,7 +1,7 @@
 {
 	"short_name": "anniversary",
 	"name": "anniversary",
-	"start_url": "/",
+	"start_url": "/anniversary/",
 	"icons": [
 		{
 			"src": "favicon.png",
@@ -11,7 +11,7 @@
 	],
 	"background_color": "#fafafa",
 	"display": "standalone",
-	"scope": "/",
+	"scope": "/anniversary/",
 	"theme_color": "#fafafa",
 	"description": "Keep track of anniversaries for important dates, such as birthdays and relationship milestones."
 }
