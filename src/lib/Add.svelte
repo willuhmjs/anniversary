@@ -171,7 +171,6 @@
 		font-size: 22px;
 		cursor: pointer;
 		color: black;
-
 	}
 
 	.icon-box button i {

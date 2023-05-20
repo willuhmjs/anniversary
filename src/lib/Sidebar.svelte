@@ -49,7 +49,7 @@
 
 	:global(.active) {
 		background-color: #ff1744;
-		color: white!important;
+		color: white !important;
 	}
 
 	.maximized {
@@ -94,7 +94,6 @@
 		border: 0;
 		border-bottom: 2px solid #cacaca;
 		color: black;
-
 	}
 
 	:global(.maximized .menuButton *) {
