@@ -105,8 +105,7 @@
 	<div class="center">
 		<h1>{calculated.timeUntilNext ? calculated.timeUntilNext : "It's today!"}</h1>
 		<p>
-			The {calculated.anniversaryNumber} anniversary of <b>{associated.title}</b> is on:
-			<br />
+			The {calculated.anniversaryNumber} anniversary of <b>{associated.title}</b> is on
 			<i
 				>{calculated.nextOccurrence.toLocaleDateString(undefined, {
 					weekday: 'long',
@@ -149,5 +148,11 @@
 
 	.center p {
 		word-wrap: break-word;
+	}
+
+	@media (max-width: 768px) {
+		.center {
+			max-width: 90vw;
+		}
 	}
 </style>
